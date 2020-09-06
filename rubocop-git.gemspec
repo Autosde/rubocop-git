@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Masaki Takeuchi','Nicolli']
   spec.email         = ['m.ishihara@gmail.com']
   spec.summary       = %q{RuboCop for git diff.}
-  spec.description   = %q{RuboCop for git diff.}
+  spec.description   = %q{RuboCop for git diff, updated}
   spec.homepage      = 'https://github.com/nicollis/rubocop-git'
   spec.license       = 'MIT'
 
