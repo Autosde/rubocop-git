@@ -6,11 +6,11 @@ require 'rubocop/git/version'
 Gem::Specification.new do |spec|
   spec.name          = 'rubocop-git'
   spec.version       = RuboCop::Git::VERSION
-  spec.authors       = ['Masaki Takeuchi']
+  spec.authors       = ['Masaki Takeuchi','Nicolli']
   spec.email         = ['m.ishihara@gmail.com']
   spec.summary       = %q{RuboCop for git diff.}
   spec.description   = %q{RuboCop for git diff.}
-  spec.homepage      = 'https://github.com/m4i/rubocop-git'
+  spec.homepage      = 'https://github.com/nicollis/rubocop-git'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'appraisal'
 
-  spec.add_dependency 'rubocop', '>= 0.24.1'
+  
 end
