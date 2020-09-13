@@ -1,7 +1,7 @@
 module RuboCop::Git
 class RuboComment
-  RUBOCOP_DISABLE = "# rubocop:disable all\n"
-  RUBOCOP_ENABLE = "# rubocop:enable all\n"
+  RUBOCOP_DISABLE = "# rubocop:disable all # !GIT!\n"
+  RUBOCOP_ENABLE = "# rubocop:enable all # !GIT!\n"
   WHITE_SPACE = /^\s*/
 
   def initialize(files)
@@ -48,7 +48,7 @@ class RuboComment
         end
 
         temp_file.close
-        FileUtils.mv(temp_file.path, file.filename)
+        FileUtils.cp(temp_file.path, file.filename)
         @edit_map[file.filename] = edit_locations
       ensure
         temp_file.close
@@ -61,16 +61,14 @@ class RuboComment
   def remove_comments
     @files.each do |file|
       temp_file = Tempfile.new('temp')
-      line_count = 0
-
+ 
       begin
         File.open(file.filename, "r").each_line do |line|
-          line_count += 1
-          temp_file.puts line unless @edit_map[file.filename].find_index line_count
+           temp_file.puts line unless line =~ /#{RUBOCOP_ENABLE}|#{RUBOCOP_DISABLE}/
         end
         
         temp_file.close
-        FileUtils.mv(temp_file.path, file.filename)
+        FileUtils.cp(temp_file.path, file.filename)
       ensure
         temp_file.close
         temp_file.unlink
